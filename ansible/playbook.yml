@@ -1,0 +1,7 @@
+---
+- name: Deploy Calculator App with Docker using Ansible
+  hosts: servers
+  become: true
+  gather_facts: false
+  roles:
+    - deploy-app

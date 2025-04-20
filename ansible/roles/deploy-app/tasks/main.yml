@@ -1,0 +1,22 @@
+---
+- name: Ensure pip is installed
+  raw: sudo apt-get install -y python3-pip || true
+
+- name: Ensure Docker SDK for Python is installed
+  pip:
+    name: docker
+    state: present
+
+- name: Pull the Docker image
+  docker_image:
+    name: "nidhishreec/calculator-app:latest"
+    source: pull
+
+- name: Run the Docker container
+  docker_container:
+    name: calculator-app
+    image: "nidhimaa/calculator-app:latest"
+    state: started
+    restart_policy: always
+    ports:
+      - "8080:8080"

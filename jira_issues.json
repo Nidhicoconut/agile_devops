@@ -1,0 +1,20 @@
+[
+  {
+    "id": "CALC-1",
+    "summary": "Implement Power Function",
+    "description": "Add a new function to calculate power of numbers",
+    "type": "Feature",
+    "status": "Done",
+    "created": "2025-04-19 16:46:06",
+    "updated": "2025-04-19 16:46:06"
+  },
+  {
+    "id": "CALC-2",
+    "summary": "Write unit tests for Power Function",
+    "description": "Create comprehensive tests for the new power function",
+    "type": "Task",
+    "status": "Done",
+    "created": "2025-04-19 16:46:06",
+    "updated": "2025-04-19 16:46:06"
+  }
+]
