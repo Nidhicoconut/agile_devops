@@ -41,6 +41,8 @@ def multiply(factor1, factor2):
     Returns:
         int or float: Product of factor1 and factor2
     """
+    print("Calculator module loaded.")
+
     return factor1 * factor2
 
 
