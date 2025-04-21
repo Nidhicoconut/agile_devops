@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - name: Check out repository
+      uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2
       with:
         python-version: '3.9'
 
@@ -27,36 +27,31 @@ jobs:
 
     - name: Lint with pylint
       run: |
-        pylint . || true
+        pylint src/ tests/
 
-    - name: Run unit tests
+    - name: Test with unittest
       run: |
         python -m unittest discover tests
 
-    - name: Login to DockerHub
-      uses: docker/login-action@v2
+    - name: Build and push Docker image
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: docker/build-push-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        push: true
-        tags: nidhimaa/calculator-app:latest
+        repository: yourusername/calculator-app
+        tags: latest
 
     - name: Simulate Jira update
       run: |
-        echo "Running dummy Jira integration script"
-        if [ -f jira/jira_integration.py ]; then python jira/jira_integration.py; fi
+        python jira/jira_integration.py
 
     - name: Prepare Kubernetes deployment
       run: |
-        echo "Simulating deployment to Kubernetes"
-        if [ -f kubernetes/deployment.yaml ]; then cat kubernetes/deployment.yaml; fi
+        echo "In a real environment, this would deploy to Kubernetes"
+        cat kubernetes/deployment.yaml
 
     - name: Prepare Ansible deployment
       run: |
-        echo "Simulating Ansible run"
-        if [ -f ansible/playbook.yml ]; then cat ansible/playbook.yml; fi
+        echo "In a real environment, this would use Ansible for configuration management"
+        cat ansible/playbook.yml
