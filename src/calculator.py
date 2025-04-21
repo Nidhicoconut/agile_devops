@@ -41,7 +41,7 @@ def multiply(factor1, factor2):
     Returns:
         int or float: Product of factor1 and factor2
     """
-    print("Calculator module loaded.")
+    print("This change was made to trigger gitactions")
 
     return factor1 * factor2
 
