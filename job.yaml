@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: calculator-test-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: calculator
+        image: nidhimaa/calculator-app:latest
+        command: ["python", "-m", "unittest", "discover", "tests"]
+      restartPolicy: Never
+  backoffLimit: 2
+

@@ -11,6 +11,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the code
 COPY . .
+# Dockerfile
+
+# 👇 Make src/ visible as a module
+ENV PYTHONPATH="${PYTHONPATH}:/app/src"
 
 # Run unit tests
 CMD ["python", "-m", "unittest", "discover", "tests"]
